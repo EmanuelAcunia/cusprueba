@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./plantilla/miplantilla.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+       <h:form>
+            <h:panelGrid columns="3">    
+                <h:outputLabel for="codpas" value="Codigo de pasaje"></h:outputLabel>
+                <h:outputText  id="codpas" value="#{modificarbeans.codPas}">
+                </h:outputText>
+                <h:message for="codpas"></h:message>
+                
+                <h:outputLabel for="pnomAp" value="NombreyApellido:"></h:outputLabel>
+                <h:inputText  id="pnomAp" value="#{modificarbeans.nomApePas}" 
+                              required="true" label="Error Nombre"
+                              validatorMessage="debe ingresar un nombre entre 4y 50 digitos"
+                              requiredMessage="Debe ingresar un nombre">
+                    <f:validateRegex pattern="[ A-Za-z]*"></f:validateRegex>
+                    <!--<f:validateLength maximum="6"></f:validateLength>-->
+                </h:inputText>
+                <h:message for="pnomAp" class="error"></h:message>
+
+                <h:outputLabel for="pdni" value="Dni:"></h:outputLabel>
+                <h:inputText  id="pdni" value="#{modificarbeans.dni}" 
+                              label="Error Dni" required="true" 
+                              validatorMessage="debe ingresar un dni con puntos ej 33.333.333"
+                              requiredMessage="Debe ingresar un Dni ">
+                    <f:validateRegex pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}"></f:validateRegex>
+                    <!--<f:validateLength maximum="45"></f:validateLength>-->
+                </h:inputText>
+                <h:message for="pdni" class="error"></h:message>
+                
+                <h:outputLabel for="pdestvue" value="Destino:"></h:outputLabel>
+                <h:selectOneListbox  id="pdestvue" label="Error Destino"
+                                     value="#{modificarbeans.destVue}" required="true">
+                    <f:selectItem itemLabel="Brasil-Rio de Janeiro" itemValue="Brasil-Rio de Janeiro"></f:selectItem>
+                    <f:selectItem itemLabel="USA-New York" itemValue="USA-New York"></f:selectItem>
+                    <f:selectItem itemLabel="Madrid-España" itemValue="Madrid-España"></f:selectItem>
+                    <f:selectItem itemLabel="Sidney-Australia" itemValue="Cancun - Mexico"></f:selectItem>
+                    <f:selectItem itemLabel="Sidney-Australia" itemValue="Tokio-Japon"></f:selectItem>
+                    <f:selectItem itemLabel="Sidney-Australia" itemValue="Oporto - Portugal"></f:selectItem>
+                    <f:selectItem itemLabel="Sidney-Australia" itemValue="Sidney-Australia"></f:selectItem>
+                </h:selectOneListbox>   
+                <h:message for="pdestvue" class="error"></h:message>
+                
+                <h:outputLabel for="pcanpas" value="Cantidad de Pasajes:"></h:outputLabel>
+                <h:inputText id="pcanpas" value="#{modificarbeans.canPas}" 
+                             required="true" label="Error Cantidad">
+                             <!--validatorMessage="debe ingresar un nombre entre 4y 10 digitos"
+                             requiredMessage="Debe ingresar un nombre">-->
+                    <f:validateLongRange maximum="8"></f:validateLongRange>
+                    <!--<f:validateLength maximum="6"></f:validateLength>-->
+                </h:inputText>
+                <h:message for="pcanpas" class="error"></h:message>
+                
+                <h:outputLabel for="pfec" value="Fecha de Salida:"></h:outputLabel>
+                <h:inputText id="pfec" value="#{modificarbeans.fecSal}" 
+                             label="Error Fecha" required="true" 
+                             requiredMessage="Debe ingresar una fecha">
+                    <f:convertDateTime pattern="dd/MM/yyyy" type="date" timeZone="GTM -0300"></f:convertDateTime>
+                </h:inputText>
+                <h:message for="pfec" class="error"></h:message>
+                
+                <h:outputLabel for="pcostopas" value="costo pasaje:"></h:outputLabel>
+                <h:inputText id="pcostopas" value="#{modificarbeans.costoPas}" 
+                             required="true">
+                </h:inputText>
+                <h:message for="pcostopas" class="error"></h:message>   
+                
+                <h:outputLabel for="pestadopas" value="Estado:"></h:outputLabel>
+                <h:selectOneListbox label="Error Estado" value="#{altabeans.estadoPas}" required="true">
+                    <f:selectItem itemLabel="Reservado" itemValue="Reservado"></f:selectItem>
+                    <f:selectItem itemLabel="Pagado" itemValue="Pagado"></f:selectItem>
+                    <f:selectItem itemLabel="Pedido" itemValue="Pedido"></f:selectItem>                    
+                </h:selectOneListbox>   
+                <h:message for="estadopas" class="error"></h:message>
+                
+                <h:message for="estadopas" class="error"></h:message>
+               
+                <h:outputLabel for="pescalavue" value="escala:"></h:outputLabel>
+                <h:selectOneRadio label="Error Escala" value="#{modificarbeans.escalaVue}" 
+                                  required="true">
+                    <f:selectItem itemLabel="si" itemValue="si"></f:selectItem>
+                    <f:selectItem itemLabel="no" itemValue="no"></f:selectItem>
+                    
+                </h:selectOneRadio>   
+                <h:message for="pescalavue" class="error"></h:message>
+
+                <h:outputLabel for="pubicacion" value="Ubicacion:"></h:outputLabel>
+                <h:selectOneListbox label="Error Ubicacion" value="#{modificarbeans.ubicacionAs}" 
+                                    required="true">
+                    <f:selectItem itemLabel="Primera clase" itemValue="Primera clase"></f:selectItem>
+                    <f:selectItem itemLabel="pasillo" itemValue="Pasillo"></f:selectItem>
+                    <f:selectItem itemLabel="Turista" itemValue="Turista"></f:selectItem>
+                   
+                </h:selectOneListbox>   
+                <h:message for="pubicacion" class="error"></h:message>
+                
+                <h:outputLabel for="pcomentario" value="Observaciones:"></h:outputLabel>
+                <h:inputTextarea label="Error Observaciones" value="#{modificarbeans.comentario}"
+                                 required="true">
+                </h:inputTextarea>   
+                <h:message for="pcomentario" class="error"></h:message>
+                
+                
+                <h:commandButton value="Actualizar" action="index" actionListener="#{modificarbeans.editarInstancia()}"></h:commandButton>
+                <h:commandButton value="Cancelar" action="index" immediate="true"></h:commandButton>
+
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

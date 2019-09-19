@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./plantilla/miplantilla.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define id="xx" name="top">
+         <h1 id="lo">listado</h1>
+    </ui:define>
+    <ui:define name="content">
+         <header>
+            <h1>Listado de Personas</h1>
+            
+        </header>
+        <nav>
+            <!--<h:graphicImage id="imagen" url="resources/tourism.jpg"></h:graphicImage>-->
+            <img  id="imagen" src="resources/tourism.jpg" alt=""/>
+            <h:form>
+                
+                <h:commandButton value="Nuevo Pasaje" action="alta"></h:commandButton>
+            </h:form>
+        </nav>
+            <section>
+                <script src="JavaScript/Logica.js" type="text/javascript"></script>
+                <h1><h:outputText value="No hay personas" rendered="#{!indexbeans.hayElementos()}"></h:outputText></h1>
+                <!--<h1><h:outputText value="Hay personas" rendered="#{!indexBean.hayElementos()}"></h:outputText></h1>-->
+                <h:form id="formulario">
+
+                    <h:dataTable id="mitabla"  value="#{indexbeans.elementos}"  style="color:blueviolet"
+                                 var="p" rendered="#{indexbeans.hayElementos()}"   border="3">
+                        <h:column>
+                            
+                            <f:facet name="header">
+                               Codigo
+                            </f:facet>
+                                #{p.codPas}
+                        </h:column>
+                        
+                        
+                        <h:column>
+                            
+                            <f:facet name="header">
+                               Nombre
+                            </f:facet>
+                                #{p.nomApePas}
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header"> Dni </f:facet>
+                                #{p.dni}
+
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header"> Destino devuelo
+                                <!--<h:commandButton onclick="#{indexBean.ordenByNom()}"  value="Nombre"></h:commandButton>-->
+                            </f:facet>
+                                #{p.destVue}
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Cantidad pasajes
+                                <!--<h:commandButton onclick="#{indexBean.ordenByNom()}"  value="Nombre"></h:commandButton>-->
+                            </f:facet>
+                                #{p.canPas}
+
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header"> Fecha de Salida</f:facet>
+                            <h:outputText value="#{p.fecSal}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" type="date" timeZone="GTM -0300"/>
+                            </h:outputText>
+
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header"> Costo pasaje
+                                <!--<h:commandButton onclick="#{indexBean.ordenByNom()}"  value="Nombre"></h:commandButton>-->
+                            </f:facet>
+                                #{p.costoPas}
+
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header"> Escala vuelo
+                                <!--<h:commandButton onclick="#{indexBean.ordenByNom()}"  value="Nombre"></h:commandButton>-->
+                            </f:facet>
+                                #{p.escalaVue}
+
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Ubicacion </f:facet>
+                                #{p.ubicacionAs}
+
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header"> Observaciones </f:facet>
+                                #{p.comentario}
+
+                        </h:column>
+                        
+                       
+                        <h:column>
+                            <f:facet name="header"> </f:facet>
+
+
+                            <h:commandButton value="Modificar" action="#{modificarbeans.BuscaIdIntancia(p.codPas)}"></h:commandButton>
+
+
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"> </f:facet>
+
+                            <h:commandButton value="Borrar" action="#{bajabeans.BuscaIdIntancia(p.codPas)}"></h:commandButton>
+
+
+                        </h:column>
+                    </h:dataTable>
+                    
+                    
+                </h:form>
+            </section>
+    </ui:define>
+
+</ui:composition>
